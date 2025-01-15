@@ -2,15 +2,16 @@
 
 all: compile
 
-compile: rebar
-	./rebar get-deps compile
+compile: rebar3
+	./rebar3 get-deps
+	./rebar3 compile
 
 reload: compile
 	zsh -c './reload.erl $$(foreach f (src/*.erl); basename $$f .erl; end)'
 
-rebar:
-	wget -c http://cloud.github.com/downloads/basho/rebar/rebar
+rebar3:
+	wget -c https://github.com/erlang/rebar3/releases/latest/download/rebar3
 	chmod +x $@
 
-clean: rebar
-	./rebar clean
+clean: rebar3
+	./rebar3 clean
